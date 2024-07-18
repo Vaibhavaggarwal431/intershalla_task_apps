@@ -40,8 +40,8 @@ class _HomescreenState extends State<Homescreen> {
       appliedFilters = filters;
       print("appliedFilters********${appliedFilters.toString()}");
     });
-    // Trigger the search logic with the applied filters
-
+    final controller = Get.put(GetSearchController());
+    controller.filterInternships(filters);
   }
 
   @override
@@ -49,52 +49,38 @@ class _HomescreenState extends State<Homescreen> {
     _debounce?.cancel();
     super.dispose();
   }
+
   @override
   Widget build(BuildContext context) {
     final controller = Get.put(GetSearchController());
     double sheight = MediaQuery.of(context).size.height;
     double swidth = MediaQuery.of(context).size.width;
 
-
     return Obx(() {
       var internshipEntries = controller.getsearchmodel.value.internshipsMeta?.entries.toList() ?? [];
-      var filteredEntries = internshipEntries.where((entry) {
-        for (var filter in appliedFilters) {
-          // Remove square brackets and trim filter for exact match
-          var trimmedFilter = filter.replaceAll(RegExp(r'[\[\]]'), '').trim();
-          print("trim value ******8 = ${trimmedFilter}");
-          if (entry.toString().trim() != trimmedFilter) {
-            return false;
-          }
-        }
-        return true;
-      }).toList();
-
-      print("filter entries value ** ${filteredEntries}");
-
-
+      var filteredEntries = controller.filteredInternships;
 
       return Scaffold(
-        backgroundColor: const Color(0xffEEEEEE),
+        backgroundColor: Colors.black12,
         appBar: AppBar(
+          backgroundColor: Colors.black12,
           title: InkWell(
             onTap: () {
               print("Ldkfjf***${controller.getsearchmodel.value.internshipIds?.length}");
             },
-            child: const Text("Searchbar"),
+            child: const Text("Internshala",style: TextStyle(color: Colors.white),),
           ),
         ),
         body: Column(
-
           children: [
             Padding(
-              padding: const EdgeInsets.only(left: 16,right: 16,top: 8,bottom: 8),
+              padding: const EdgeInsets.only(left: 16, right: 16, top: 8, bottom: 8),
               child: Container(
                 height: sheight * 0.1,
                 width: double.infinity,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(21),
-                  color: Colors.white,
+                  color: Colors.white.withOpacity(.2),
                 ),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -103,15 +89,15 @@ class _HomescreenState extends State<Homescreen> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         InkWell(
-                          onTap: (){
+                          onTap: () {
                             Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => Filterscreens(onFiltersApplied: _applyFilters,)
+                                builder: (context) => Filterscreens(onFiltersApplied: _applyFilters,)
                             ));
                           },
                           child: Container(
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(21),
-                              color: Colors.blue.withOpacity(.2),
+                              color: Colors.white.withOpacity(.2),
                             ),
                             child: const Padding(
                               padding: EdgeInsets.only(left: 8, right: 8, top: 5, bottom: 5),
@@ -119,7 +105,7 @@ class _HomescreenState extends State<Homescreen> {
                                 children: [
                                   Icon(
                                     Icons.filter_alt_outlined,
-                                    color: Colors.blue,
+                                    color: Colors.white,
                                   ),
                                   SizedBox(
                                     width: 5,
@@ -129,7 +115,7 @@ class _HomescreenState extends State<Homescreen> {
                                     style: TextStyle(
                                         fontSize: 14,
                                         fontWeight: FontWeight.w400,
-                                        color: Colors.black),
+                                        color: Colors.white),
                                   ),
                                 ],
                               ),
@@ -146,7 +132,7 @@ class _HomescreenState extends State<Homescreen> {
                       style: const TextStyle(
                           fontWeight: FontWeight.w400,
                           fontSize: 14,
-                          color: Colors.black87),
+                          color: Colors.white),
                     )
                   ],
                 ),
@@ -165,13 +151,14 @@ class _HomescreenState extends State<Homescreen> {
                 width: swidth,
                 decoration: BoxDecoration(
                     border: Border.all(
-                      color: Colors.grey,
+                      color: Colors.white,
                     ),
                     borderRadius: const BorderRadius.all(
                       Radius.circular(10),
                     )),
                 child: TextFormField(
                   controller: searchquery,
+                  cursorColor: Colors.white,
                   onChanged: _onSearchChanged,
                   decoration: InputDecoration(
                     suffixIcon: InkWell(
@@ -184,20 +171,21 @@ class _HomescreenState extends State<Homescreen> {
                             ),
                           ));
                         },
-                        child: Icon(Icons.search)),
+                        child: const Icon(Icons.search,color: Colors.white,)),
                     border: InputBorder.none,
-                    prefixIcon: const Icon(
-                      CupertinoIcons.search,
-                      color: Colors.grey,
-                    ),
-                    hintText: "Search here..",
+                    hintText: " Search here..",
                     hintStyle: const TextStyle(
+                      color: Colors.white,
                         fontFamily: "Mulish", fontSize: 17),
+
+                  ),
+                  style: const TextStyle(
+                    color: Colors.white
                   ),
                 ),
               ),
             ),
-            // Display applied filters
+
             if (appliedFilters.isNotEmpty)
               Padding(
                 padding: const EdgeInsets.only(left: 16, right: 16),
@@ -205,11 +193,11 @@ class _HomescreenState extends State<Homescreen> {
                   spacing: 8.0,
                   children: appliedFilters
                       .map((filter) => Chip(
-                    label: Text(filter),
+                    label: Text(filter,style: const TextStyle(color: Colors.black),),
                     onDeleted: () {
                       setState(() {
                         appliedFilters.remove(filter);
-                        // Trigger the search logic again with updated filters
+
                         _onSearchChanged(searchquery.text);
                       });
                     },
@@ -217,33 +205,25 @@ class _HomescreenState extends State<Homescreen> {
                       .toList(),
                 ),
               ),
-            const Padding(
-              padding: EdgeInsets.only(left: 16, right: 16, top: 10),
-              child: Text(
-                " Saved Searches",
-                style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 17,
-                    fontFamily: "Mulish",
-                    fontWeight: FontWeight.w700),
-              ),
-            ),
-           /*filteredEntries.isEmpty*/
-      controller.getsearchmodel.value.internshipsMeta?.length == 0
-                ? const Center(child: CircularProgressIndicator())
-                : Expanded(
+
+
+            Expanded(
               child: ListView.builder(
-                itemCount: controller.getsearchmodel.value.internshipsMeta?.length,
-                itemBuilder: (BuildContext context, int i) {
-                  var internshipKey = internshipEntries[i].key;
-                  var internship = internshipEntries[i].value;
+                itemCount: filteredEntries.length,
+                itemBuilder: (context, index) {
+                  if (index >= internshipEntries.length || index >= filteredEntries.length) {
+                    return const SizedBox(); // or some other placeholder widget
+                  }
+
+                  var internshipKey = internshipEntries[index].key;
+                  var internship = filteredEntries[index];
                   return Padding(
-                    padding: const EdgeInsets.all(16.0),
+                    padding:  const EdgeInsets.all(16.0),
                     child: Container(
                       width: double.infinity,
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(21),
-                          color: Colors.white),
+                          color: Colors.white.withOpacity(.2),),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
@@ -257,9 +237,13 @@ class _HomescreenState extends State<Homescreen> {
                                   border: Border.all(width: 1, color: Colors.green)),
                               child: const Row(
                                 children: [
-                                  Icon(
-                                    Icons.auto_graph_sharp,
-                                    color: Colors.blue,
+                                  Padding(
+                                    padding: EdgeInsets.only(left: 8,bottom: 4,top: 4,),
+                                    child: Icon(
+                                      Icons.auto_graph_sharp,
+                                      color: Colors.white,
+                                      size: 18,
+                                    ),
                                   ),
                                   SizedBox(
                                     width: 5,
@@ -269,7 +253,7 @@ class _HomescreenState extends State<Homescreen> {
                                     style: TextStyle(
                                         fontSize: 14,
                                         fontWeight: FontWeight.w600,
-                                        color: Colors.black),
+                                        color: Colors.white),
                                   ),
                                 ],
                               ),
@@ -286,7 +270,7 @@ class _HomescreenState extends State<Homescreen> {
                                   children: [
                                     InkWell(
                                       onTap: () {
-                                        print("8888888888****= ${internship?.title}");
+                                        print("8888888888****= ${internship.title}");
                                       },
                                       child: ConstrainedBox(
                                         constraints: BoxConstraints(
@@ -294,11 +278,11 @@ class _HomescreenState extends State<Homescreen> {
                                           maxWidth: swidth * 0.6,
                                         ),
                                         child: Text(
-                                          internship?.title ?? 'data',
+                                          internship.title ?? 'data',
                                           style: const TextStyle(
                                             fontSize: 18,
                                             fontWeight: FontWeight.w600,
-                                            color: Colors.black,
+                                            color: Colors.white,
                                           ),
                                         ),
                                       ),
@@ -309,11 +293,11 @@ class _HomescreenState extends State<Homescreen> {
                                         maxWidth: swidth * 0.6,
                                       ),
                                       child: Text(
-                                        "${internship?.companyName}",
+                                        "${internship.companyName}",
                                         style: const TextStyle(
                                             fontSize: 18,
                                             fontWeight: FontWeight.w500,
-                                            color: Colors.black38),
+                                            color: Colors.white38),
                                         maxLines: 1,
                                       ),
                                     ),
@@ -323,6 +307,7 @@ class _HomescreenState extends State<Homescreen> {
                                   padding: EdgeInsets.all(8.0),
                                   child: Icon(
                                     Icons.flutter_dash,
+                                    color: Colors.white,
                                     size: 50,
                                   ),
                                 )
@@ -335,18 +320,18 @@ class _HomescreenState extends State<Homescreen> {
                               children: [
                                 const Icon(
                                   Icons.location_pin,
-                                  color: Colors.black,
+                                  color: Colors.white,
                                   size: 15,
                                 ),
                                 const SizedBox(
                                   width: 5,
                                 ),
                                 Text(
-                                  "${internship?.locationNames ?? 'delhi'}",
+                                  "${internship.locationNames ?? 'delhi'}",
                                   style: const TextStyle(
                                       fontSize: 14,
                                       fontWeight: FontWeight.w400,
-                                      color: Colors.black),
+                                      color: Colors.white),
                                 ),
                               ],
                             ),
@@ -357,18 +342,18 @@ class _HomescreenState extends State<Homescreen> {
                               children: [
                                 const Icon(
                                   Icons.slow_motion_video,
-                                  color: Colors.black,
+                                  color: Colors.white,
                                   size: 15,
                                 ),
                                 const SizedBox(
                                   width: 5,
                                 ),
                                 Text(
-                                  internship?.startDate?.name.capitalizeFirst ?? '',
+                                  internship.startDate?.name.capitalizeFirst ?? '',
                                   style: const TextStyle(
                                       fontSize: 14,
                                       fontWeight: FontWeight.w400,
-                                      color: Colors.black),
+                                      color: Colors.white),
                                 ),
                               ],
                             ),
@@ -379,18 +364,18 @@ class _HomescreenState extends State<Homescreen> {
                               children: [
                                 const Icon(
                                   Icons.monetization_on_outlined,
-                                  color: Colors.black,
+                                  color: Colors.white,
                                   size: 15,
                                 ),
                                 const SizedBox(
                                   width: 5,
                                 ),
                                 Text(
-                                  "${internship?.stipend?.salary}",
+                                  "${internship.stipend?.salary}",
                                   style: const TextStyle(
                                       fontSize: 14,
                                       fontWeight: FontWeight.w300,
-                                      color: Colors.black),
+                                      color: Colors.white),
                                 ),
                               ],
                             ),
@@ -400,15 +385,15 @@ class _HomescreenState extends State<Homescreen> {
                             child: Container(
                               decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(7),
-                                  color: Colors.blue.withOpacity(.2)),
+                                  color: Colors.white.withOpacity(.2)),
                               child: Padding(
                                 padding: const EdgeInsets.only(left: 8, right: 8, bottom: 3, top: 3),
                                 child: Text(
-                                  "Internship ${internship?.ppoLabelValue?.name.capitalizeFirst}",
+                                  "Internship ${internship.ppoLabelValue?.name.capitalizeFirst}",
                                   style: const TextStyle(
                                       fontSize: 14,
                                       fontWeight: FontWeight.w400,
-                                      color: Colors.black),
+                                      color: Colors.white),
                                 ),
                               ),
                             ),
@@ -419,22 +404,23 @@ class _HomescreenState extends State<Homescreen> {
                               width: swidth * 0.35,
                               decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(7),
-                                  color: Colors.blue.withOpacity(.1)),
+                                  color: Colors.white.withOpacity(.1)),
                               child: Padding(
-                                padding: const EdgeInsets.only(left: 10, right: 10, bottom: 4, top: 4),
+                                padding: const EdgeInsets.only(left: 10, right: 0, bottom: 4, top: 4),
                                 child: Row(
                                   children: [
                                     const Icon(
                                       Icons.watch_later_outlined,
-                                      color: Colors.black38,
+                                      color: Colors.white38,
+                                      size: 18,
                                     ),
                                     const SizedBox(width: 5),
                                     Text(
-                                      "${internship?.postedByLabel}",
+                                      "${internship.postedByLabel}",
                                       style: const TextStyle(
                                           fontSize: 14,
                                           fontWeight: FontWeight.w400,
-                                          color: Colors.black),
+                                          color: Colors.white),
                                     ),
                                   ],
                                 ),

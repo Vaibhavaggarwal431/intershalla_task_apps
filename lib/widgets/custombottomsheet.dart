@@ -26,8 +26,15 @@ class _BottomSheetScreenState extends State<BottomSheetScreen> {
     double swidth = MediaQuery.of(context).size.width;
 
     return Scaffold(
+      backgroundColor: Colors.black12,
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.black12,
+        leading: InkWell(
+          onTap: () {
+            Navigator.pop(context);
+          },
+          child: Image.asset("assets/images/back.png",color: Colors.white,),
+        ),
         title: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -37,7 +44,7 @@ class _BottomSheetScreenState extends State<BottomSheetScreen> {
                 const Text(
                   "Intershala ",
                   style: TextStyle(
-                      color: Colors.black,
+                      color: Colors.white,
                       fontFamily: "Mulish",
                       fontWeight: FontWeight.w600),
                 ),
@@ -60,7 +67,7 @@ class _BottomSheetScreenState extends State<BottomSheetScreen> {
                   "Add",
                   style: TextStyle(
                       color: Colors.lightBlue,
-                      fontSize: 17,
+                      fontSize: 14,
                       fontFamily: "Mulish",
                       fontWeight: FontWeight.w600),
                 ))
@@ -107,7 +114,7 @@ class _BottomSheetScreenState extends State<BottomSheetScreen> {
                     child: Text(
                       "${internship?.title}",
                       style: TextStyle(
-                          color: Colors.black,
+                          color: Colors.white,
                           fontSize: 17,
                           fontFamily: "Mulish",
                           fontWeight: FontWeight.w400),
@@ -153,7 +160,7 @@ class _BottomSheetScreenState extends State<BottomSheetScreen> {
                     child: Text(
                       "${internship?.locationNames}",
                       style: TextStyle(
-                          color: Colors.black,
+                          color: Colors.white,
                           fontSize: 17,
                           fontFamily: "Mulish",
                           fontWeight: FontWeight.w400),
@@ -199,7 +206,7 @@ class _BottomSheetScreenState extends State<BottomSheetScreen> {
                     child: Text(
                       "${internship?.companyName ?? 'google'}",
                       style: TextStyle(
-                          color: Colors.black,
+                          color: Colors.white,
                           fontSize: 17,
                           fontFamily: "Mulish",
                           fontWeight: FontWeight.w400),

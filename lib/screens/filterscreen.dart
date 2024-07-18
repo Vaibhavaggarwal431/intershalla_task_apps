@@ -16,13 +16,14 @@ class _FilterscreensState extends State<Filterscreens> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.black12,
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.black12,
         leading: InkWell(
           onTap: () {
             Navigator.pop(context);
           },
-          child: Image.asset("assets/images/back.png"),
+          child: Image.asset("assets/images/back.png",color: Colors.white,),
         ),
         title: const Row(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -30,7 +31,8 @@ class _FilterscreensState extends State<Filterscreens> {
             Text(
               "Filters",
               style: TextStyle(
-                  color: Colors.black,
+                fontSize: 16,
+                  color: Colors.white,
                   fontFamily: "Mulish",
                   fontWeight: FontWeight.w600),
             ),
@@ -46,24 +48,24 @@ class _FilterscreensState extends State<Filterscreens> {
         children: [
           const Padding(
             padding: EdgeInsets.only(
-              left: 16,
+              left: 14,
               top: 20,
               bottom: 8,
             ),
             child: Text(
               "PROFILE",
               style: TextStyle(
-                  color: Colors.green,
-                  fontSize: 16,
+                  color: Colors.white,
+                  fontSize: 14,
                   fontFamily: "Mulish",
                   fontWeight: FontWeight.w600),
             ),
           ),
           Padding(
             padding: const EdgeInsets.only(
-              left: 16,
-              top: 8,
-              bottom: 8,
+              left: 10,
+              top: 5,
+              bottom: 6,
             ),
             child: Row(
               children: [
@@ -86,12 +88,14 @@ class _FilterscreensState extends State<Filterscreens> {
                         },
                       ),
                     ));
-                  },
+                  },style: ElevatedButton.styleFrom(
+                  minimumSize: Size(100, 35), // Width: 150, Height: 50
+                ),
                   child: const Text(
                     "Add Profile",
                     style: TextStyle(
                         color: Colors.lightBlue,
-                        fontSize: 17,
+                        fontSize: 14,
                         fontFamily: "Mulish",
                         fontWeight: FontWeight.w600),
                   ),
@@ -101,22 +105,22 @@ class _FilterscreensState extends State<Filterscreens> {
           ),
           const Padding(
             padding: EdgeInsets.only(
-              left: 16,
+              left: 14,
               top: 20,
               bottom: 8,
             ),
             child: Text(
               "CITY",
               style: TextStyle(
-                  color: Colors.green,
-                  fontSize: 16,
+                  color: Colors.white,
+                  fontSize: 14,
                   fontFamily: "Mulish",
                   fontWeight: FontWeight.w600),
             ),
           ),
           Padding(
             padding: const EdgeInsets.only(
-              left: 16,
+              left: 14,
               top: 8,
               bottom: 8,
             ),
@@ -141,12 +145,14 @@ class _FilterscreensState extends State<Filterscreens> {
                         },
                       ),
                     ));
-                  },
+                  },style: ElevatedButton.styleFrom(
+                  minimumSize: Size(100, 35), // Width: 150, Height: 50
+                ),
                   child: const Text(
                     "Add City",
                     style: TextStyle(
                         color: Colors.lightBlue,
-                        fontSize: 17,
+                        fontSize: 14,
                         fontFamily: "Mulish",
                         fontWeight: FontWeight.w600),
                   ),
@@ -156,22 +162,22 @@ class _FilterscreensState extends State<Filterscreens> {
           ),
           const Padding(
             padding: EdgeInsets.only(
-              left: 16,
+              left: 14,
               top: 20,
               bottom: 8,
             ),
             child: Text(
               "COMPANY",
               style: TextStyle(
-                  color: Colors.green,
-                  fontSize: 16,
+                  color: Colors.white,
+                  fontSize: 14,
                   fontFamily: "Mulish",
                   fontWeight: FontWeight.w600),
             ),
           ),
           Padding(
             padding: const EdgeInsets.only(
-              left: 16,
+              left: 14,
               top: 8,
               bottom: 8,
             ),
@@ -196,12 +202,14 @@ class _FilterscreensState extends State<Filterscreens> {
                         },
                       ),
                     ));
-                  },
+                  },style: ElevatedButton.styleFrom(
+                  minimumSize: Size(100, 35), // Width: 150, Height: 50
+                ),
                   child: const Text(
                     "Add Company",
                     style: TextStyle(
                         color: Colors.lightBlue,
-                        fontSize: 17,
+                        fontSize: 14,
                         fontFamily: "Mulish",
                         fontWeight: FontWeight.w600),
                   ),
@@ -212,21 +220,21 @@ class _FilterscreensState extends State<Filterscreens> {
           // Display selected filters
           const Padding(
             padding: EdgeInsets.only(
-              left: 16,
+              left: 14,
               top: 20,
               bottom: 8,
             ),
             child: Text(
               "SELECTED FILTERS",
               style: TextStyle(
-                  color: Colors.green,
-                  fontSize: 16,
+                  color: Colors.white,
+                  fontSize: 14,
                   fontFamily: "Mulish",
                   fontWeight: FontWeight.w600),
             ),
           ),
           Padding(
-            padding: const EdgeInsets.all(16.0),
+            padding: const EdgeInsets.all(14.0),
             child: Wrap(
               spacing: 8.0,
               children: selectedFilters
@@ -246,7 +254,7 @@ class _FilterscreensState extends State<Filterscreens> {
           ),
           Padding(
             padding: const EdgeInsets.only(
-              left: 16,
+              left: 14,
               top: 8,
               bottom: 8,
             ),
@@ -268,7 +276,7 @@ class _FilterscreensState extends State<Filterscreens> {
                     "Clear All",
                     style: TextStyle(
                         color: Colors.lightBlue,
-                        fontSize: 17,
+                        fontSize: 14,
                         fontFamily: "Mulish",
                         fontWeight: FontWeight.w600),
                   ),
@@ -282,7 +290,7 @@ class _FilterscreensState extends State<Filterscreens> {
                     "Add Filter",
                     style: TextStyle(
                         color: Colors.lightBlue,
-                        fontSize: 17,
+                        fontSize: 14,
                         fontFamily: "Mulish",
                         fontWeight: FontWeight.w600),
                   ),

@@ -2,7 +2,7 @@
 
 A Flutter project.
 
-## [Download the APK file](https://github.com/navneetprajapati26/internshala-search/blob/main/apk/app-release.apk)
+## [Download the APK file](https://github.com/Vaibhavaggarwal431/intershalla_task_apps/blob/master/apk/app-release.apk)
 
 # Features
 - I'm using Bloc State management with clean architecture in this app .
@@ -14,16 +14,12 @@ A Flutter project.
 
 # Screenshots
 <p>
-<img src="https://github.com/navneetprajapati26/internshala-search/blob/main/img/WhatsApp%20Image%202024-01-20%20at%2011.04.54%20PM.jpeg" alt="" width = "250" >
-<img src="https://raw.githubusercontent.com/navneetprajapati26/img/WhatsApp Image 2024-01-20 at 11.04.54 PM.jpeg" alt="" width = "250" >
-<img src="https://github.com/navneetprajapati26/internshala-search/blob/main/img/WhatsApp%20Image%202024-01-20%20at%2011.04.55%20PM%20(1).jpeg" alt="" width = "250">
-<img src="https://github.com/navneetprajapati26/internshala-search/blob/main/img/WhatsApp%20Image%202024-01-20%20at%2011.04.55%20PM.jpeg" alt=""width = "250" >
-<img src="https://github.com/navneetprajapati26/internshala-search/blob/main/img/WhatsApp%20Image%202024-01-20%20at%2011.04.56%20PM%20(1).jpeg" alt=""width = "250" >
-<img src="https://github.com/navneetprajapati26/internshala-search/blob/main/img/WhatsApp%20Image%202024-01-20%20at%2011.04.56%20PM%20(2).jpeg" alt=""width = "250" >
-<img src="https://github.com/navneetprajapati26/internshala-search/blob/main/img/WhatsApp%20Image%202024-01-20%20at%2011.04.56%20PM.jpeg" alt=""width = "250" >
-<img src="https://github.com/navneetprajapati26/internshala-search/blob/main/img/WhatsApp%20Image%202024-01-20%20at%2011.04.56%20PM.jpeg" alt=""width = "250" >
-<img src="https://github.com/navneetprajapati26/internshala-search/blob/main/img/WhatsApp%20Image%202024-01-20%20at%2011.04.57%20PM%20(2).jpeg" alt=""width = "250" >
-<img src="https://github.com/navneetprajapati26/internshala-search/blob/main/img/WhatsApp%20Image%202024-01-20%20at%2011.04.57%20PM.jpeg" alt=""width = "250" >
-<img src="https://github.com/navneetprajapati26/internshala-search/blob/main/img/WhatsApp%20Image%202024-01-20%20at%2011.04.58%20PM.jpeg" alt=""width = "250" >
+<img src="https://github.com/Vaibhavaggarwal431/intershalla_task_apps/blob/master/apk/img/WhatsApp%20Image%202024-07-18%20at%2011.43.17%20PM.jpeg" alt="" width = "250" >
+<img src="https://github.com/Vaibhavaggarwal431/intershalla_task_apps/blob/master/apk/img/WhatsApp%20Image%202024-07-18%20at%2011.43.18%20PM.jpeg" alt="" width = "250" >
+<img src="https://github.com/Vaibhavaggarwal431/intershalla_task_apps/blob/master/apk/img/WhatsApp%20Image%202024-07-18%20at%2011.43.19%20PM%20(1).jpeg" alt="" width = "250">
+<img src="https://github.com/Vaibhavaggarwal431/intershalla_task_apps/blob/master/apk/img/WhatsApp%20Image%202024-07-18%20at%2011.43.19%20PM.jpeg" alt=""width = "250" >
+<img src="https://github.com/Vaibhavaggarwal431/intershalla_task_apps/blob/master/apk/img/WhatsApp%20Image%202024-07-18%20at%2011.43.20%20PM.jpeg" alt=""width = "250" >
+<img src="https://github.com/Vaibhavaggarwal431/intershalla_task_apps/blob/master/apk/img/WhatsApp%20Image%202024-07-18%20at%2011.43.33%20PM.jpeg" alt=""width = "250" >
+<img src="https://github.com/Vaibhavaggarwal431/intershalla_task_apps/blob/master/apk/img/WhatsApp%20Image%202024-07-18%20at%2011.43.35%20PM.jpeg" alt=""width = "250" >
 
 </p>

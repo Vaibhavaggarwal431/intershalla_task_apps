@@ -5,11 +5,10 @@ A Flutter project.
 ## [Download the APK file](https://github.com/Vaibhavaggarwal431/intershalla_task_apps/blob/master/apk/app-release.apk)
 
 # Features
-Clean Architecture: Define entities and use cases independent of UI and data sources.
-Getx State Management: Use GetX Observables to store app state (e.g., location data, loading state).
-Smooth UI: Update UI widgets based on changes in state variables using GetX builders.
-Internet Access**: Inject an interface (e.g., NetworkRepository) into use case to handle network calls.
-Location: Use a location service (injected into use case) to access user locations.
+- Clean Architecture: Define entities and use cases independent of UI and data sources.
+- Getx State Management: Use GetX Observables to store app state (e.g., location data, loading state).
+- Smooth UI: Update UI widgets based on changes in state variables using GetX builders.
+- Internet Access: Inject an interface (e.g., Repository) into use case to handle network calls.
 
 
 

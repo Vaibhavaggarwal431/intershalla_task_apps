@@ -31,7 +31,7 @@ class _FilterscreensState extends State<Filterscreens> {
             Text(
               "Filters",
               style: TextStyle(
-                fontSize: 16,
+                fontSize: 15,
                   color: Colors.white,
                   fontFamily: "Mulish",
                   fontWeight: FontWeight.w600),

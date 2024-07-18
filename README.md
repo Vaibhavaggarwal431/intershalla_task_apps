@@ -5,10 +5,12 @@ A Flutter project.
 ## [Download the APK file](https://github.com/Vaibhavaggarwal431/intershalla_task_apps/blob/master/apk/app-release.apk)
 
 # Features
-- I'm using Bloc State management with clean architecture in this app .
-- When user open app first time Checking connectivity and if No Internet show "no connectivity" on screen .
-- Internet is available then calling API and store api response using hive For when Internet is not available
-- You can filter internship response via "title", "location", "company name", "is remote" .
+Clean Architecture: Define entities and use cases independent of UI and data sources.
+Getx State Management: Use GetX Observables to store app state (e.g., location data, loading state).
+Smooth UI: Update UI widgets based on changes in state variables using GetX builders.
+Internet Access**: Inject an interface (e.g., NetworkRepository) into use case to handle network calls.
+Location: Use a location service (injected into use case) to access user locations.
+
 
 
 

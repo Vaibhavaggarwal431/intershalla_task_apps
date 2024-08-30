@@ -66,7 +66,7 @@ class _HomescreenState extends State<Homescreen> {
           backgroundColor: Colors.black12,
           title: InkWell(
             onTap: () {
-              print("Ldkfjf***${controller.getsearchmodel.value.internshipIds?.length}");
+              print("check the value ***${controller.getsearchmodel.value.internshipIds?.length}");
             },
             child: const Text("Internshala",style: TextStyle(color: Colors.white),),
           ),
